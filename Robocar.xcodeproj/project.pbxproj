@@ -489,6 +489,7 @@
 				3D9ED8B81C9D8F7800F20013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D9ED8B91C9D8F7800F20013 /* Build configuration list for PBXNativeTarget "RobocarTests" */ = {
 			isa = XCConfigurationList;
@@ -497,6 +498,7 @@
 				3D9ED8BB1C9D8F7800F20013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D9ED8BC1C9D8F7800F20013 /* Build configuration list for PBXNativeTarget "RobocarUITests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +507,7 @@
 				3D9ED8BE1C9D8F7800F20013 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

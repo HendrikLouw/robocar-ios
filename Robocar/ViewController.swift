@@ -9,19 +9,42 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-
-    @IBAction func forwardButtonClicked(sender: UIButton) {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/forward")!
+    let baseUrl = "http://192.168.43.13:3000"
+    var forwardSpeed = 125
+    let turnSpeed = 200
+    
+    @IBAction func speedSlider(sender: UISlider) {
+        forwardSpeed = Int(sender.value)
+        
+    }
+    
+    func callSpeedURL(url: String, params: Dictionary<String, AnyObject>) {
+        let url = NSURL(string: baseUrl + url)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        do {
+            try request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: [])
+        } catch {
+            
+        }
+        
         let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
             if error != nil{
                 print(error!.localizedDescription)
                 return
             }
+            print(response.debugDescription)
         }
         task.resume()
+    }
+    
+    @IBAction func forwardButtonClicked(sender: UIButton) {
+        let params = ["speed": forwardSpeed] as Dictionary<String, Int>
+        callSpeedURL("/api/robots/robocar/commands/forward", params: params)
     }
    
     @IBAction func forwardButtonExit(sender: UIButton) {
@@ -29,16 +52,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func backwardButtonClicked(sender: UIButton) {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/backward")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
-            if error != nil{
-                print(error!.localizedDescription)
-                return
-            }
-        }
-        task.resume()
+        let params = ["speed": forwardSpeed] as Dictionary<String, Int>
+        callSpeedURL("/api/robots/robocar/commands/backward", params: params)
     }
     
     @IBAction func backwardButtonExit(sender: AnyObject) {
@@ -46,16 +61,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func leftButtonClicked(sender: UIButton) {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/left")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
-            if error != nil{
-                print(error!.localizedDescription)
-                return
-            }
-        }
-        task.resume()
+        let params = ["speed": turnSpeed] as Dictionary<String, Int>
+        callSpeedURL("/api/robots/robocar/commands/left", params: params)
     }
     
     @IBAction func leftButtonExit(sender: AnyObject) {
@@ -63,17 +70,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func rightButtonClicked(sender: UIButton) {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/right")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
-            if error != nil{
-                print(error!.localizedDescription)
-                return
-            }
-        }
-        task.resume()
-    }
+        let params = ["speed": turnSpeed] as Dictionary<String, Int>
+        callSpeedURL("/api/robots/robocar/commands/right", params: params)    }
     
     
     @IBAction func rightButtonExit(sender: AnyObject) {
@@ -88,47 +86,20 @@ class ViewController: UIViewController {
     
     
     func stop() {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/stop_acceleration")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
-            if error != nil{
-                print(error!.localizedDescription)
-                return
-            }
-        }
-        task.resume()
-        
+        let params = [:] as Dictionary<String, String>
+        callSpeedURL("/api/robots/robocar/commands/stop", params: params)
     }
     
     
     func stopAcceleration() {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/stop_acceleration")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
-            if error != nil{
-                print(error!.localizedDescription)
-                return
-            }
-        }
-        task.resume()
-        
+        let params = [:] as Dictionary<String, String>
+        callSpeedURL("/api/robots/robocar/commands/stop_acceleration", params: params)
     }
 
 
     func stopTurning() {
-        let url = NSURL(string: "http://172.20.10.2:3000/api/robots/dc_motor_bot/commands/stop_turning")!
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ data,response,error in
-            if error != nil{
-                print(error!.localizedDescription)
-                return
-            }
-        }
-        task.resume()
-
+        let params = [:] as Dictionary<String, String>
+        callSpeedURL("/api/robots/robocar/commands/stop_turning", params: params)
     }
     
     override func viewDidLoad() {

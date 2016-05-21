@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -51,9 +51,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGs-xB-Ngm">
                                 <rect key="frame" x="266" y="161" width="68" height="30"/>
                                 <state key="normal" title="Backward"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="164" y="265" width="68" height="30"/>
-                                </variation>
                                 <connections>
                                     <action selector="backwardButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="9az-cr-HaX"/>
                                     <action selector="backwardButtonExit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tqe-2a-cig"/>
@@ -66,6 +63,25 @@
                                     <action selector="stopButtonClicked:" destination="BYZ-38-t0r" eventType="touchDown" id="qnJ-zO-L7i"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="125" minValue="0.0" maxValue="255" translatesAutoresizingMaskIntoConstraints="NO" id="h6C-E2-Nyj">
+                                <rect key="frame" x="0.0" y="-15" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="Fdh-6Z-ua6"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="Fdh-6Z-ua6"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="Fdh-6Z-ua6"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="speedSlider:" destination="BYZ-38-t0r" eventType="valueChanged" id="b93-D5-BUc"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -88,6 +104,7 @@
                             <constraint firstItem="arp-rw-7X9" firstAttribute="top" secondItem="H5U-My-zXu" secondAttribute="bottom" constant="41" id="PN1-q5-Mic">
                                 <variation key="heightClass=regular-widthClass=compact" constant="42"/>
                             </constraint>
+                            <constraint firstItem="h6C-E2-Nyj" firstAttribute="top" secondItem="hGs-xB-Ngm" secondAttribute="bottom" constant="80" id="Pv3-9o-BMk"/>
                             <constraint firstItem="LA5-F6-L9Z" firstAttribute="leading" secondItem="arp-rw-7X9" secondAttribute="trailing" constant="45" id="QHt-Yz-Rcf">
                                 <variation key="heightClass=regular-widthClass=compact" constant="50"/>
                             </constraint>
@@ -97,6 +114,7 @@
                             <constraint firstItem="hGs-xB-Ngm" firstAttribute="top" secondItem="arp-rw-7X9" secondAttribute="bottom" constant="32" id="VHn-vA-SID">
                                 <variation key="heightClass=regular-widthClass=compact" constant="33"/>
                             </constraint>
+                            <constraint firstItem="h6C-E2-Nyj" firstAttribute="centerX" secondItem="H5U-My-zXu" secondAttribute="centerX" id="aPD-bm-8jj"/>
                             <constraint firstItem="AO6-nM-zbs" firstAttribute="baseline" secondItem="arp-rw-7X9" secondAttribute="baseline" id="cQG-yW-MLx"/>
                             <constraint firstItem="hGs-xB-Ngm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="246" id="cf0-K5-dle">
                                 <variation key="heightClass=regular-widthClass=compact" constant="146"/>
@@ -105,6 +123,7 @@
                             <constraint firstItem="H5U-My-zXu" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mhg-dt-bdv">
                                 <variation key="heightClass=regular-widthClass=compact" constant="-2"/>
                             </constraint>
+                            <constraint firstItem="h6C-E2-Nyj" firstAttribute="centerX" secondItem="hGs-xB-Ngm" secondAttribute="centerX" id="nVd-WD-UmG"/>
                             <constraint firstItem="AO6-nM-zbs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="182" id="pl7-AO-gCY">
                                 <variation key="heightClass=regular-widthClass=compact" constant="83"/>
                             </constraint>
@@ -113,6 +132,9 @@
                             </constraint>
                         </constraints>
                         <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="h6C-E2-Nyj"/>
+                            </mask>
                             <mask key="constraints">
                                 <exclude reference="5wh-He-xne"/>
                                 <exclude reference="C9o-yo-FYP"/>
@@ -123,9 +145,15 @@
                                 <exclude reference="BkR-5d-dml"/>
                                 <exclude reference="gnu-8a-5jd"/>
                                 <exclude reference="GEM-Jl-iiT"/>
+                                <exclude reference="Pv3-9o-BMk"/>
+                                <exclude reference="aPD-bm-8jj"/>
+                                <exclude reference="nVd-WD-UmG"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="h6C-E2-Nyj"/>
+                            </mask>
                             <mask key="constraints">
                                 <include reference="5wh-He-xne"/>
                                 <include reference="C9o-yo-FYP"/>
@@ -140,6 +168,9 @@
                                 <exclude reference="xWS-sk-7XT"/>
                                 <include reference="GEM-Jl-iiT"/>
                                 <exclude reference="T5h-l0-KbC"/>
+                                <include reference="Pv3-9o-BMk"/>
+                                <include reference="aPD-bm-8jj"/>
+                                <include reference="nVd-WD-UmG"/>
                             </mask>
                         </variation>
                     </view>
